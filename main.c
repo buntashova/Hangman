@@ -3,6 +3,7 @@
 #include <time.h>
 #include <stdlib.h>
 
+#define GAME_MISS 6
 #define WORD_FILES_PATH "./words/"
 #define MAX_CATEGORIES  4
 
@@ -56,9 +57,44 @@ int main(void)
 		}
 		count++;
 	}
-	char tmp[64];
+	char tmp[32] = {0};
 	fscanf(f, "%s", tmp);
 	printf("%s\n", tmp);
+
+	int len = strlen(tmp);
+	char *word = malloc(len * sizeof(char));
+	printf("%d\n",len);
+	if (word == NULL)
+	{
+		printf("ERROR\n");
+		return -1;
+	}
+	memcpy(word, tmp, len);
+	int flg = 0;
+	int cur_miss = 0;
+	int leter = 0;
+	while (cur_miss < GAME_MISS)
+	{
+		printf("Input leters: ");
+		leter = fgetc(stdin);
+		fgetc(stdin); // for /n
+		printf("%c\n", leter);
+		for (int i = 0; i < len; ++i)
+		{
+			if (word[i] == leter)
+			{
+				printf("Found\n");
+				flg = 1;
+				break;
+			}
+		}
+		if (flg == 0)
+		{
+			printf("Not found\n");
+			cur_miss++;
+		}
+		// leter = 0;
+	}
 
 	return 0;
 }
