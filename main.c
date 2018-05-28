@@ -63,18 +63,24 @@ int main(void)
 
 	int len = strlen(tmp);
 	char *word = malloc(len * sizeof(char));
-	printf("%d\n",len);
+	char *hidden = malloc(len * sizeof(char));
+	for (int i = 0; i < len; ++i)
+	{
+		hidden[i] = '*';
+	}
 	if (word == NULL)
 	{
 		printf("ERROR\n");
 		return -1;
 	}
 	memcpy(word, tmp, len);
-	int flg = 0;
 	int cur_miss = 0;
 	int leter = 0;
+	int hidden_len = 0;
 	while (cur_miss < GAME_MISS)
 	{
+		int flg = 0;
+		printf("hidden word [%s]\n", hidden);
 		printf("Input leters: ");
 		leter = fgetc(stdin);
 		fgetc(stdin); // for /n
@@ -85,6 +91,13 @@ int main(void)
 			{
 				printf("Found\n");
 				flg = 1;
+				hidden[i] = leter;
+				hidden_len++;
+				if (hidden_len == len)
+				{
+					printf("WIN!!!! %s\n", hidden);
+					return 0;
+				}		
 				break;
 			}
 		}
@@ -93,7 +106,6 @@ int main(void)
 			printf("Not found\n");
 			cur_miss++;
 		}
-		// leter = 0;
 	}
 
 	return 0;
