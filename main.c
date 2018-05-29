@@ -87,7 +87,7 @@ int main(void)
 		printf("%c\n", leter);
 		for (int i = 0; i < len; ++i)
 		{
-			if (word[i] == leter)
+			if (word[i] == leter && hidden[i] != leter)
 			{
 				printf("Found\n");
 				flg = 1;
