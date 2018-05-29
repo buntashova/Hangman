@@ -25,15 +25,19 @@ int main(void)
 	switch (categor) {
 	case animals:
 		sprintf(file_name, "%sanimals", WORD_FILES_PATH);
+		printf("\nYour category of game: ANIMALS\n\n");
 		break;
 	case computers:
 		sprintf(file_name, "%scomputers", WORD_FILES_PATH);
+		printf("\nYour category of game: COMPUTERS\n\n");
 		break;
 	case home:
 		sprintf(file_name, "%shome", WORD_FILES_PATH);
+		printf("\nYour category of game: HOME\n\n");
 		break;
 	case music:
 		sprintf(file_name, "%smusic", WORD_FILES_PATH);
+		printf("\nYour category of game: MUSIC\n\n");
 		break;
 	default:
 		printf("ERROR!\n");
@@ -80,33 +84,37 @@ int main(void)
 	while (cur_miss < GAME_MISS)
 	{
 		int flg = 0;
-		printf("hidden word [%s]\n", hidden);
+		printf("\nHidden word [%s]\n", hidden);
 		printf("Input leters: ");
 		leter = fgetc(stdin);
 		fgetc(stdin); // for /n
-		printf("%c\n", leter);
-		for (int i = 0; i < len; ++i)
+		if (('a' <= leter && leter <= 'z') || ('A' <= leter && leter <= 'Z'))
 		{
-			if (word[i] == leter && hidden[i] != leter)
+			for (int i = 0; i < len; ++i)
 			{
-				printf("Found\n");
-				flg = 1;
-				hidden[i] = leter;
-				hidden_len++;
-				if (hidden_len == len)
+				if (word[i] == leter && hidden[i] != leter)
 				{
-					printf("WIN!!!! %s\n", hidden);
-					return 0;
-				}		
-				break;
+					flg = 1;
+					hidden[i] = leter;
+					hidden_len++;
+					if (hidden_len == len)
+					{
+						printf("\n                YOU WIN!!!! \n                THIS IS WORD : %s\n\n", hidden);
+						return 0;
+					}
+					break;
+				}
+			}
+			if (flg == 0)
+			{
+				printf("\nLetter - '%c' not found! Try again\n",leter);
+				cur_miss++;
 			}
 		}
-		if (flg == 0)
-		{
-			printf("Not found\n");
-			cur_miss++;
+		else{
+			printf("\nINVALID CHARACTER! \nTRY AGAIN \n");
 		}
 	}
-
+	printf("\n                YOU LOSS\n\n");
 	return 0;
 }
