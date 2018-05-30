@@ -1,8 +1,9 @@
-#include "hangman.h"
+#include "interface.h"
+// #include "hangman.h"
 
-int main(int argc, char const *argv[])
+int main(int argc, char *argv[])
 {
-	hangman();
-
+	// hangman();
+	start_interface(/*argc, argv*/);
 	return 0;
 }
