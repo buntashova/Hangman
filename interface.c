@@ -24,10 +24,14 @@ int start_interface(int argc, char *argv[])
 
     gameMsg = GTK_LABEL(gtk_builder_get_object(builder, "gameMsg"));
     hangmanImage = GTK_IMAGE(gtk_builder_get_object(builder, "img"));
+    msgImage = GTK_IMAGE(gtk_builder_get_object(builder, "img2"));
     textBox = GTK_ENTRY(gtk_builder_get_object(builder, "text_letter"));
     checkButton = GTK_BUTTON(gtk_builder_get_object(builder, "checkButton"));
-    gameLabel2 = GTK_LABEL(gtk_builder_get_object(builder, "gameLabel2"));
-    gameLabel3 = GTK_LABEL(gtk_builder_get_object(builder, "gameLabel3"));
+    Label_category = GTK_LABEL(gtk_builder_get_object(builder, "Label_category"));
+    Label_hidden = GTK_LABEL(gtk_builder_get_object(builder, "Label_hidden"));
+    againButton = GTK_BUTTON(gtk_builder_get_object(builder, "Again"));
+    exitButton = GTK_BUTTON(gtk_builder_get_object(builder, "Exit"));
+    Label_word = GTK_LABEL(gtk_builder_get_object(builder, "select_word"));
 
 
     gtk_builder_connect_signals(builder, NULL);

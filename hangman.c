@@ -139,7 +139,7 @@ void game()
 	const char *text = gtk_entry_get_text(textBox);
 	letter = text[0];
 	gtk_entry_set_text(textBox, "");
-	gtk_label_set_text(gameLabel2, category_str);
+	gtk_label_set_text(Label_category, category_str);
 
 	if (is_letter(letter) == 1) {
 		for (int i = 0; i < word_len; ++i) {
@@ -150,6 +150,8 @@ void game()
 				if (hidden_len == word_len) {
 					gtk_widget_hide(gameWindow);
 					gtk_widget_show(msgWindow);
+					gtk_label_set_text(Label_word, select_word);
+
 					gtk_label_set_text(gameMsg, "You Win!");
 					printf("\n[%s] - YOU WIN!\n", hidden_word);
 					return;
@@ -170,11 +172,14 @@ void game()
 	if (current_miss == MAX_MISS) {
 		gtk_widget_hide(gameWindow);
 		gtk_widget_show(msgWindow);
+		gtk_label_set_text(Label_word, select_word);
+		sprintf(pic, "pic/%d.jpg", current_miss + 1);
+		gtk_image_set_from_file(msgImage, pic);
 		gtk_label_set_text(gameMsg, "You Loss!");
 		printf("\nYOU LOSS!\n");
 		return;
 	}
-	gtk_label_set_text(gameLabel3, hidden_word);
+	gtk_label_set_text(Label_hidden, hidden_word);
 
 	printf("\nHidden word [%s]\n", hidden_word);
 
@@ -188,6 +193,7 @@ void hangman(void)
 	int ret = 0;
 	gtk_image_set_from_file(hangmanImage, "pic/1.jpg");
 	gtk_widget_hide(startWindow);
+	gtk_widget_hide(msgWindow);
 	gtk_widget_show(gameWindow);
 	file_name = get_category_file();
 	if (file_name == NULL) {
@@ -202,8 +208,8 @@ void hangman(void)
 	}
 	current_miss = 0;
 	hidden_len = 0;
-	gtk_label_set_text(gameLabel2, category_str);
-	gtk_label_set_text(gameLabel3, hidden_word);
+	gtk_label_set_text(Label_category, category_str);
+	gtk_label_set_text(Label_hidden, hidden_word);
 
 	return;
 }

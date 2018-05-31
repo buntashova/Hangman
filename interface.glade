@@ -13,7 +13,7 @@
           <placeholder/>
         </child>
         <child>
-          <object class="GtkLabel" id="gameLabel2">
+          <object class="GtkLabel" id="Label_category">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="label" translatable="yes">category</property>
@@ -42,7 +42,7 @@
           </packing>
         </child>
         <child>
-          <object class="GtkLabel" id="gameLabel3">
+          <object class="GtkLabel" id="Label_hidden">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="label" translatable="yes">hiddenWord</property>
@@ -59,10 +59,22 @@
           </packing>
         </child>
         <child>
+          <object class="GtkLabel">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="margin_bottom">29</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">4</property>
+          </packing>
+        </child>
+        <child>
           <object class="GtkLabel" id="gameLabel4">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="label" translatable="yes">INPUT LETTER:</property>
+            <property name="label" translatable="yes">You letter</property>
             <attributes>
               <attribute name="style" value="normal"/>
               <attribute name="weight" value="bold"/>
@@ -72,18 +84,23 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">4</property>
+            <property name="position">5</property>
           </packing>
         </child>
         <child>
           <object class="GtkEntry" id="text_letter">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
+            <property name="max_length">1</property>
+            <property name="width_chars">0</property>
+            <property name="max_width_chars">1</property>
+            <property name="input_purpose">alpha</property>
           </object>
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">5</property>
+            <property name="padding">4</property>
+            <property name="position">6</property>
           </packing>
         </child>
         <child>
@@ -97,7 +114,7 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">6</property>
+            <property name="position">7</property>
           </packing>
         </child>
       </object>
@@ -106,14 +123,106 @@
   <object class="GtkWindow" id="msgWindow">
     <property name="can_focus">False</property>
     <child>
-      <object class="GtkLabel" id="gameMsg">
+      <object class="GtkBox">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="label" translatable="yes">gameMsg</property>
-        <attributes>
-          <attribute name="weight" value="bold"/>
-          <attribute name="scale" value="2"/>
-        </attributes>
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkLabel" id="gameMsg">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">gameMsg</property>
+            <attributes>
+              <attribute name="style" value="normal"/>
+              <attribute name="weight" value="bold"/>
+              <attribute name="scale" value="2"/>
+            </attributes>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="select_word">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">select_word</property>
+            <attributes>
+              <attribute name="style" value="normal"/>
+              <attribute name="weight" value="bold"/>
+              <attribute name="scale" value="2"/>
+            </attributes>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkImage" id="img2">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="pixbuf">pic/1.jpg</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">2</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkGrid">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <child>
+              <object class="GtkButton" id="Again">
+                <property name="label" translatable="yes">Continue</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <signal name="clicked" handler="hangman" swapped="no"/>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="Exit">
+                <property name="label" translatable="yes">Exit</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="margin_top">1</property>
+                <property name="vexpand">True</property>
+                <signal name="clicked" handler="gtk_main_quit" swapped="no"/>
+              </object>
+              <packing>
+                <property name="left_attach">2</property>
+                <property name="top_attach">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">                                                                           </property>
+              </object>
+              <packing>
+                <property name="left_attach">1</property>
+                <property name="top_attach">0</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">3</property>
+          </packing>
+        </child>
       </object>
     </child>
   </object>
@@ -148,6 +257,8 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
+                <property name="hexpand">False</property>
+                <property name="vexpand">False</property>
               </object>
               <packing>
                 <property name="left_attach">2</property>
@@ -155,7 +266,15 @@
               </packing>
             </child>
             <child>
-              <placeholder/>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">                                                                                   </property>
+              </object>
+              <packing>
+                <property name="left_attach">1</property>
+                <property name="top_attach">0</property>
+              </packing>
             </child>
           </object>
           <packing>

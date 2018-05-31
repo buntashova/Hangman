@@ -8,9 +8,9 @@
 GtkBuilder *builder;
 GtkWidget *startWindow, *gameWindow, *msgWindow;
 GtkEntry *textBox;
-GtkButton *startButton, *exitButton, *checkButton;
-GtkLabel *gameMsg, *gameLabel2, *gameLabel3;
-GtkImage *hangmanImage;
+GtkButton *startButton, *exitButton, *checkButton, *againButton, *exitButton;
+GtkLabel *gameMsg, *Label_category, *Label_hidden, *Label_word;
+GtkImage *hangmanImage, *msgImage;
 
 int start_interface();
 
