@@ -7,9 +7,11 @@
 
 GtkBuilder *builder;
 GtkWidget *startWindow, *gameWindow, *msgWindow;
-GtkButton *startButton, *exitButton;
-GtkLabel *hiddenWordLabel, *gameMsg;
+GtkEntry *textBox;
+GtkButton *startButton, *exitButton, *checkButton;
+GtkLabel *hiddenWordLabel, *gameMsg, *gameLabel2, *gameLabel3; 
 GtkImage *hangmanImage;
+
 int start_interface(/*int argc, char *argv[]*/);
 
 #endif

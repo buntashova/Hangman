@@ -12,6 +12,6 @@ enum categories {
 	music
 };
 
-int hangman(void);
+void hangman(void);
 
 #endif
