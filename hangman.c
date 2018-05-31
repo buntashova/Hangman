@@ -36,7 +36,7 @@ char * get_category_file() {
 		len = strlen("computers");
 		category_str = malloc(len + 1);
 		memset(category_str, 0, len + 1);
-		strcat(category_str, "computers");break;
+		strcat(category_str, "computers"); break;
 	case home:
 		sprintf(tmp, "%shome", WORD_FILES_PATH);
 		printf("\nYour category of game: HOME\n\n");
@@ -63,12 +63,12 @@ char * get_category_file() {
 		return NULL;
 	}
 
-	file_name = malloc(len * sizeof(char));
+	file_name = malloc(len * sizeof(char) + 1);
 	if (!file_name) {
 		printf("Error, can't malloc");
 		return NULL;
 	}
-	memset(file_name, 0, len);
+	memset(file_name, 0, len + 1);
 	memcpy(file_name, tmp, len);
 
 	return file_name;
@@ -138,15 +138,10 @@ int current_miss = 0;
 
 void game()
 {
-	gtk_label_set_text(gameLabel2, category_str);
-
-	// gtk_image_set_from_file(hangmanImage, "pic/1.jpg");
-	// gtk_widget_hide(startWindow);
-	// gtk_widget_hide(msgWindow);
-	// gtk_widget_show(gameWindow);
 	char letter = 0;
 	int found = 0;
 
+	gtk_label_set_text(gameLabel2, category_str);
 	const char *text = gtk_entry_get_text(textBox);
 	letter = text[0];
 	gtk_entry_set_text(textBox, "");
@@ -160,6 +155,9 @@ void game()
 
 				hidden_len++;
 				if (hidden_len == word_len) {
+					gtk_widget_hide(gameWindow);
+					gtk_widget_show(msgWindow);
+					gtk_label_set_text(gameMsg, "You Win!");
 					printf("\n[%s] - YOU WIN!\n", hidden_word);
 					return;
 				}
@@ -169,11 +167,9 @@ void game()
 		if (found == 0) {
 			char pic[10] = {0};
 			current_miss++;
-			sprintf(pic, "pic/%d.jpg",current_miss+1);
+			sprintf(pic, "pic/%d.jpg", current_miss + 1);
 			printf("pic %s\n", pic);
 			gtk_image_set_from_file(hangmanImage, pic);
-    		// gtk_widget_show(gameWindow);
-
 			printf("\nLetter - '%c' not found! Try again\n", letter);
 		}
 	}
@@ -182,13 +178,18 @@ void game()
 	}
 	gtk_label_set_text(gameLabel3, hidden_word);
 
-	if (current_miss == MAX_MISS)
+	if (current_miss == MAX_MISS) {
+		gtk_widget_hide(gameWindow);
+		gtk_widget_show(msgWindow);
+		gtk_label_set_text(gameMsg, "You Win!");
 		printf("\nYOU LOSS!\n");
+	}
 
 	printf("\nHidden word [%s]\n", hidden_word);
 
 	return;
 }
+
 
 void hangman(void)
 {
@@ -200,21 +201,17 @@ void hangman(void)
 	file_name = get_category_file();
 	if (file_name == NULL) {
 		printf("Error, can't get category file");
-		return;
+		exit(1);
 	}
 
 	word_len = get_word(file_name);
 	if (word_len <= 0) {
 		printf("Error");
-		return;
+		exit(1);
 	}
 
 	gtk_label_set_text(gameLabel2, category_str);
 	gtk_label_set_text(gameLabel3, hidden_word);
-	// game(word_len);
-	// free(file_name);
-	// free(select_word);
-	// free(hidden_word);
 
 	return;
 }
