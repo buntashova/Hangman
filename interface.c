@@ -22,7 +22,6 @@ int start_interface(int argc, char *argv[])
     startButton = GTK_BUTTON(gtk_builder_get_object(builder, "startButton"));
     exitButton = GTK_BUTTON(gtk_builder_get_object(builder, "exitButton"));
 
-    hiddenWordLabel = GTK_LABEL(gtk_builder_get_object(builder, "hiddenWordLabel"));
     gameMsg = GTK_LABEL(gtk_builder_get_object(builder, "gameMsg"));
     hangmanImage = GTK_IMAGE(gtk_builder_get_object(builder, "img"));
     textBox = GTK_ENTRY(gtk_builder_get_object(builder, "text_letter"));

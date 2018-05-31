@@ -1,4 +1,4 @@
-CC = gcc -std=c99 -Wall -g
+CC = gcc -std=c99 -Wall
 DEFINE = -DGDK_DISABLE_DEPRECATION_WARNINGS
 LIBS = `pkg-config --cflags --libs gtk+-3.0` -rdynamic
 
