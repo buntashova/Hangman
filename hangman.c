@@ -187,6 +187,23 @@ void game()
 	return;
 }
 
+void free_if_exist()
+{
+	if (hidden_word) {
+		free(hidden_word);
+		hidden_word = NULL;
+	}
+	if (select_word) {
+		free(select_word);
+		select_word = NULL;
+	}
+	if (category_str) {
+		free(category_str);
+		category_str = NULL;
+	}
+	current_miss = 0;
+	hidden_len = 0;
+}
 
 void hangman(void)
 {
@@ -196,6 +213,7 @@ void hangman(void)
 	gtk_widget_hide(startWindow);
 	gtk_widget_hide(msgWindow);
 	gtk_widget_show(gameWindow);
+	init_data();
 	file_name = get_category_file();
 	if (file_name == NULL) {
 		printf("Error, can't get category file");
@@ -207,10 +225,9 @@ void hangman(void)
 		printf("Error");
 		exit(1);
 	}
-	current_miss = 0;
-	hidden_len = 0;
+
 	gtk_label_set_text(Label_category, category_str);
 	gtk_label_set_text(Label_hidden, hidden_word);
-
+	free(file_name)
 	return;
 }
