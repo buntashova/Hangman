@@ -187,7 +187,7 @@ void game()
 	return;
 }
 
-void free_if_exist()
+void init_data()
 {
 	if (hidden_word) {
 		free(hidden_word);
@@ -228,6 +228,6 @@ void hangman(void)
 
 	gtk_label_set_text(Label_category, category_str);
 	gtk_label_set_text(Label_hidden, hidden_word);
-	free(file_name)
+	free(file_name);
 	return;
 }
