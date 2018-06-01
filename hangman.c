@@ -151,7 +151,8 @@ void game()
 					gtk_widget_hide(gameWindow);
 					gtk_widget_show(msgWindow);
 					gtk_label_set_text(Label_word, select_word);
-
+					sprintf(pic, "pic/%d.jpg", current_miss + 1);
+					gtk_image_set_from_file(msgImage, pic);
 					gtk_label_set_text(gameMsg, "You Win!");
 					printf("\n[%s] - YOU WIN!\n", hidden_word);
 					return;
